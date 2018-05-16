@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>书名猜猜猜</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/mdui.min.css">
+	</head>
+
+	<body>
+
+		<body class="mdui-theme-primary-red">
+			<div class="mdui-toolbar mdui-color-theme mdui-appbar-fixed" style="z-index: 1000;">
+				<span class="mdui-typo-title">书名猜猜猜</span>
+				<div class="mdui-toolbar-spacer"></div>
+				<a href="https://github.com/nebulasio" target="_blank" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-tooltip="{content: '查看 Github'}">
+					<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 36 36" enable-background="new 0 0 36 36" xml:space="preserve" class="mdui-icon" style="width: 24px;height:24px;">
+						<path fill-rule="evenodd" clip-rule="evenodd" fill="#ffffff" d="M18,1.4C9,1.4,1.7,8.7,1.7,17.7c0,7.2,4.7,13.3,11.1,15.5
+	c0.8,0.1,1.1-0.4,1.1-0.8c0-0.4,0-1.4,0-2.8c-4.5,1-5.5-2.2-5.5-2.2c-0.7-1.9-1.8-2.4-1.8-2.4c-1.5-1,0.1-1,0.1-1
+	c1.6,0.1,2.5,1.7,2.5,1.7c1.5,2.5,3.8,1.8,4.7,1.4c0.1-1.1,0.6-1.8,1-2.2c-3.6-0.4-7.4-1.8-7.4-8.1c0-1.8,0.6-3.2,1.7-4.4
+	c-0.2-0.4-0.7-2.1,0.2-4.3c0,0,1.4-0.4,4.5,1.7c1.3-0.4,2.7-0.5,4.1-0.5c1.4,0,2.8,0.2,4.1,0.5c3.1-2.1,4.5-1.7,4.5-1.7
+	c0.9,2.2,0.3,3.9,0.2,4.3c1,1.1,1.7,2.6,1.7,4.4c0,6.3-3.8,7.6-7.4,8c0.6,0.5,1.1,1.5,1.1,3c0,2.2,0,3.9,0,4.5
+	c0,0.4,0.3,0.9,1.1,0.8c6.5-2.2,11.1-8.3,11.1-15.5C34.3,8.7,27,1.4,18,1.4z"></path>
+					</svg>
+				</a>
+			</div>
+			<div class="mdui-container">
+				<div class="noExtension" id="noExtension">
+					提示: 请安装
+					<a target="_blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a> 再使用小秘密
+				</div>
+
+				<div class="row">
+					<div class="mdui-col-xs-2" style="margin-top: 180px;">
+						<div class="mdui-card" style="padding: 10px;;">
+							<h2 align="center">规则说明</h2>
+							<p style="margin: 10px 0;">1.随机挑选10本书的封面，点击封面转动</p>
+							<p style="margin: 10px 0;">2.右侧输入10本书的书名，点击提交消耗一定的gas验证猜对的数量</p>
+							<p style="margin: 10px 0;">3.点击刷新按钮刷新页面</p>
+							<div align="center">
+								<button id="refresh" onclick="refresh()" style="margin: 0 auto;color: #fff;"
+										class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-red-600">刷新</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="mdui-col-xs-6" style="margin-top:20px;margin-bottom: 140px;">
+						<ul class="box1 demo">
+							<li>
+								<div>1</div>
+							</li>
+							<li>
+								<div>2</div>
+							</li>
+							<li>
+								<div>3</div>
+							</li>
+							<li>
+								<div>4</div>
+							</li>
+							<li>
+								<div>5</div>
+							</li>
+							<li>
+								<div>6</div>
+							</li>
+							<li>
+								<div>7</div>
+							</li>
+							<li>
+								<div>8</div>
+							</li>
+							<li>
+								<div>9</div>
+							</li>
+							<li>
+								<div>10</div>
+							</li>
+						</ul>
+						<ul class="box2 demo">
+							<li>
+								<div><img src="img/1.jpg"></div>
+							</li>
+							<li>
+								<div><img src="img/2.jpg"></div>
+							</li>
+							<li>
+								<div><img src="img/3.jpg"></div>
+							</li>
+							<li>
+								<div><img src="img/4.jpg"></div>
+							</li>
+							<li>
+								<div><img src="img/5.jpg"></div>
+							</li>
+							<li>
+								<div><img src="img/6.jpg"></div>
+							</li>
+							<li>
+								<div><img src="img/7.jpg"></div>
+							</li>
+							<li>
+								<div><img src="img/8.jpg"></div>
+							</li>
+							<li>
+								<div><img src="img/9.jpg"></div>
+							</li>
+							<li>
+								<div><img src="img/9.jpg"></div>
+							</li>
+						</ul>
+					</div>
+
+					<div class="mdui-col-xs-4" style="margin-top: 60px;">
+						<div class="mdui-card" style="padding: 10px;">
+							<div class="mdui-textfield">
+								<i class="mdui-icon material-icons">book</i>
+								<input class="mdui-textfield-input" type="text" placeholder="书名1"/>
+							</div>
+							<div class="mdui-textfield">
+								<i class="mdui-icon material-icons">book</i>
+								<input class="mdui-textfield-input" type="text" placeholder="书名2"/>
+							</div>
+							<div class="mdui-textfield">
+								<i class="mdui-icon material-icons">book</i>
+								<input class="mdui-textfield-input" type="text" placeholder="书名3"/>
+							</div>
+							<div class="mdui-textfield">
+								<i class="mdui-icon material-icons">book</i>
+								<input class="mdui-textfield-input" type="text" placeholder="书名4"/>
+							</div>
+							<div class="mdui-textfield">
+								<i class="mdui-icon material-icons">book</i>
+								<input class="mdui-textfield-input" type="text" placeholder="书名5"/>
+							</div>
+							<div class="mdui-textfield">
+								<i class="mdui-icon material-icons">book</i>
+								<input class="mdui-textfield-input" type="text" placeholder="书名6"/>
+							</div>
+							<div class="mdui-textfield">
+								<i class="mdui-icon material-icons">book</i>
+								<input class="mdui-textfield-input" type="text" placeholder="书名7"/>
+							</div>
+							<div class="mdui-textfield">
+								<i class="mdui-icon material-icons">book</i>
+								<input class="mdui-textfield-input" type="text" placeholder="书名8"/>
+							</div>
+							<div class="mdui-textfield">
+								<i class="mdui-icon material-icons">book</i>
+								<input class="mdui-textfield-input" type="text" placeholder="书名9"/>
+							</div>
+							<div class="mdui-textfield">
+								<i class="mdui-icon material-icons">book</i>
+								<input class="mdui-textfield-input" type="text" placeholder="书名10"/>
+							</div>
+							<br/>
+							<div align="center">
+								<button id="push" onclick="push()" style="margin: 0 auto;color: #fff;"
+										class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-red-600">提交</button>
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="mdui-col-xs-12" style="text-align: center;margin: 10px;">
+						使用<a href="https://nebulas.io/">星云链</a>驱动，<a href="https://incentive.nebulas.io/cn/signup.html?invite=pvkCA">提交DAPP获得100NAS</a>
+					</div>
+				</div>
+
+
+
+			</div>
+			<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/nebPay.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+			<script src="js/mdui.min.js"></script>
+			<script src="js/jquery.cubeSlider.js"></script>
+			<script>
+				var NebPay = require("nebpay"); //https://github.com/nebulasio/nebPay
+				var nebPay = new NebPay();
+
+				//检查扩展是否已安装
+				//如果安装了扩展，var“webExtensionWallet”将被注入到web页面中1
+				if(typeof(webExtensionWallet) === "undefined") {
+					//alert ("扩展钱包未安装，请先安装.")
+					$("#noExtension").show();
+				}
+
+				var dappAddress = "n1kyTRfnJj9gyaJHBCwFRWBUNvRX285zfzG";
+
+                $('.box1').polygon({
+                    width: 70,
+                    height: 70,
+                    timer: 0
+                });
+                $('.box2').polygon({
+                    width: 120,
+                    height: 120,
+                    timer: 0
+                });
+			</script>
+		</body>
+
+</html>
