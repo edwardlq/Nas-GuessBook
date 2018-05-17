@@ -1,6 +1,6 @@
 "use strict";
 
-var Book = function (text) {
+var Movie = function (text) {
     if (text) {
         var obj = JSON.parse(text);
         this.id = obj.id;
@@ -11,13 +11,13 @@ var Book = function (text) {
     }
 };
 
-Book.prototype = {
+Movie.prototype = {
     toString: function () {
         return JSON.stringify(this);
     }
 };
 
-var BookRecord = function (text) {
+var MovieRecord = function (text) {
     if (text) {
         var obj = JSON.parse(text);
         this.id1 = obj.id1;
@@ -64,20 +64,20 @@ var BookRecord = function (text) {
     }
 };
 
-BookRecord.prototype = {
+MovieRecord.prototype = {
     toString: function () {
         return JSON.stringify(this);
     }
 };
 
 
-var GuessBookContract = function () {
+var GuessMovieContract = function () {
    LocalContractStorage.defineMapProperty(this, "dataMap");
-   LocalContractStorage.defineMapProperty(this, "bookMap");
+   LocalContractStorage.defineMapProperty(this, "movieMap");
    LocalContractStorage.defineProperty(this, "size");
 };
 
-GuessBookContract.prototype = {
+GuessMovieContract.prototype = {
     init: function () {
         this.size = 0;
         var names = new Array(
@@ -85,24 +85,25 @@ GuessBookContract.prototype = {
             "11","12","13","14","15","16","17","18","19","20"
         );
         for(var i=0; i<20; i++){
-            var book = new Book();
-            book.id = i;
-            book.name = names[i];
-            this.dataMap.set(i, book);
+            var movie = new Movie();
+            movie.id = i;
+            movie.name = names[i];
+            this.dataMap.set(i, movie);
         }
 
     },
 
-    getTenBook: function () {
-        var object = this.bookMap.get(this.size - 1);
+    getTenMovie: function () {
+		//讲上次存入的电影ID返回
+        var object = this.movieMap.get(this.size - 1);
         var idArr = [object.id1,object.id2,object.id3,object.id4,object.id5,
             object.id6,object.id7,object.id8,object.id9,object.id10];
         return JSON.stringify(idArr);
     },
 
-    setTenBook:function () {
+    setTenMovie:function () {
         var index = this.size;
-        //在所有的书本中随机获得10本书，存入bookMap中并返回
+        //在所有的电影中随机获得10部电影，存入movieMap中
         var idArr = [];
         var nameArr = [];
         var json = {};
@@ -114,7 +115,7 @@ GuessBookContract.prototype = {
                 nameArr.push(this.dataMap.get(k).name);
             }
         }
-        var record = new BookRecord();
+        var record = new MovieRecord();
         record.id1 = idArr[0];
         record.id2 = idArr[1];
         record.id3 = idArr[2];
@@ -135,55 +136,55 @@ GuessBookContract.prototype = {
         record.name8 = nameArr[7];
         record.name9 = nameArr[8];
         record.name10 = nameArr[9];
-        this.bookMap.set(index,record);
+        this.movieMap.set(index,record);
         this.size += 1;
     },
 
-    getBook: function (key) {
-        return this.bookMap.get(key);
+    getMovie: function (key) {
+        return this.movieMap.get(key);
     },
 
     len:function(){
       return this.size;
     },
 
-    getAnswer(book1,book2,book3,book4,book5,book6,book7,book8,book9,book10){
-        var object = this.bookMap.get(this.size - 1);
+    getAnswer: function (movie1,movie2,movie3,movie4,movie5,movie6,movie7,movie8,movie9,movie10){
+        var object = this.movieMap.get(this.size - 1);
         var result = 0;
-        if(object.name1 == book1){
+        if(object.name1 == movie1){
             result += 1;
         }
-        if(object.name2 == book2){
+        if(object.name2 == movie2){
             result += 1;
         }
-        if(object.name3 == book3){
+        if(object.name3 == movie3){
             result += 1;
         }
-        if(object.name4 == book4){
+        if(object.name4 == movie4){
             result += 1;
         }
-        if(object.name5 == book5){
+        if(object.name5 == movie5){
             result += 1;
         }
-        if(object.name6 == book6){
+        if(object.name6 == movie6){
             result += 1;
         }
-        if(object.name7 == book7){
+        if(object.name7 == movie7){
             result += 1;
         }
-        if(object.name8 == book8){
+        if(object.name8 == movie8){
             result += 1;
         }
-        if(object.name9 == book9){
+        if(object.name9 == movie9){
             result += 1;
         }
-        if(object.name10 == book10){
+        if(object.name10 == movie10){
             result += 1;
         }
         return result;
-    }
+    },
 
 
 };
 
-module.exports = GuessBookContract;
+module.exports = GuessMovieContract;
