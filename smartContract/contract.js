@@ -93,12 +93,23 @@ GuessMovieContract.prototype = {
 
     },
 
-    getTenMovie: function () {
+    getTenMovieId: function () {
 		//讲上次存入的电影ID返回
         var object = this.movieMap.get(this.size - 1);
         var idArr = [object.id1,object.id2,object.id3,object.id4,object.id5,
             object.id6,object.id7,object.id8,object.id9,object.id10];
         return JSON.stringify(idArr);
+    },
+
+    getTenMovie: function () {
+        //讲上次存入的电影ID和电影名一起返回
+        var object = this.movieMap.get(this.size - 1);
+        var movieArr = [object.id1+"###"+object.name1,object.id2+"###"+object.name2,
+            object.id3+"###"+object.name3,object.id4+"###"+object.name4,
+            object.id5+"###"+object.name5,object.id6+"###"+object.name6,
+            object.id7+"###"+object.name7,object.id8+"###"+object.name8,
+            object.id9+"###"+object.name9,object.id10+"###"+object.name10];
+        return JSON.stringify(movieArr);
     },
 
     setTenMovie:function () {
