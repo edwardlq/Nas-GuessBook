@@ -75,16 +75,22 @@ var GuessMovieContract = function () {
    LocalContractStorage.defineMapProperty(this, "dataMap");
    LocalContractStorage.defineMapProperty(this, "movieMap");
    LocalContractStorage.defineProperty(this, "size");
+   LocalContractStorage.defineProperty(this, "movieNum");
 };
 
 GuessMovieContract.prototype = {
     init: function () {
         this.size = 0;
         var names = new Array(
-            "1","2","3","4","5","6","7","8","9","10",
-            "11","12","13","14","15","16","17","18","19","20"
+            "三傻大闹宝莱坞","乱世佳人","大话西游之大圣娶亲","天堂电影院","少年派的奇幻漂流",
+            "当幸福来敲门", "忠犬八公的故事","怦然心动","搏击俱乐部","放牛班的春天",
+            "教父","无间道","星际穿越","机器人总动员","楚门的世界",
+            "泰坦尼克号", "活着","海上钢琴师","熔炉","盗梦空间",
+            "美丽人生","肖申克的救赎","蝙蝠侠：黑暗骑士","触不可及","辛德勒的名单",
+            "这个杀手不太冷","闻香识女人","阿甘正传","霸王别姬","鬼子来了"
         );
-        for(var i=0; i<20; i++){
+        this.movieNum = names.length;
+        for(var i=0; i<this.movieNum; i++){
             var movie = new Movie();
             movie.id = i;
             movie.name = names[i];
@@ -119,7 +125,7 @@ GuessMovieContract.prototype = {
         var nameArr = [];
         var json = {};
         while(idArr.length < 10){
-            var k = Math.round(Math.random()*20) - 1;
+            var k = Math.round(Math.random()*this.movieNum) - 1;
             if(!json[k]){
                 json[k]=true;
                 idArr.push(k);
